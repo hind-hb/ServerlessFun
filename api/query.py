@@ -18,7 +18,7 @@ class handler(BaseHTTPRequestHandler):
     else :
         message = "GooD Morning "
     
-    message = f"\n   {name} hind {str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
+    message = f"\n   {wlcm} hind {str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
 
     self.send_response(200)
     self.send_header('Content-type', 'text/plain')
