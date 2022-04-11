@@ -16,7 +16,7 @@ class handler(BaseHTTPRequestHandler):
     data = r.json()
     
     message = str(data)        
-    
+  
 
     self.send_response(200)
     self.send_header('Content-type', 'text/plain')
