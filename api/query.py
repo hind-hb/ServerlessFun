@@ -11,14 +11,14 @@ class handler(BaseHTTPRequestHandler):
     urlcomponent = parse.urlsplit(s)
     qslist = parse.parse_qsl(urlcomponent.query)
     dice = dict(qslist)
-    name = dice.get("name")
-
-    # if name:
-    #   message = f"aloha {name}"
-    # else:
-    #   message = "aloha stranger"
+    wlcm = dice.get("wlcm")
     
-    message = f"\n GooD Morning {name} {str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
+    if wlcm :
+        message = f"\hello {wlcm}"
+    else :
+        message = "GooD Morning "
+    
+    message = f"\n   {name} hind {str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
 
     self.send_response(200)
     self.send_header('Content-type', 'text/plain')
@@ -26,16 +26,6 @@ class handler(BaseHTTPRequestHandler):
 
     self.wfile.write(message.encode())
 
-
-    message1 = '''
-    Welcome to the MY first application of the serverless function .... 
-    will give some updated usefull infromation
-                  ******  crrent Time is  *****   
-    '''
-    self.wfile.write(message1.encode())
-
-    self.wfile.write(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')).encode())
- 
 
 
 
