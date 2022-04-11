@@ -13,12 +13,12 @@ class handler(BaseHTTPRequestHandler):
     dice = dict(qslist)
     name = dice.get("name")
 
-    if name:
-      message = f"aloha {name}"
-    else:
-      message = "aloha stranger"
+    # if name:
+    #   message = f"aloha {name}"
+    # else:
+    #   message = "aloha stranger"
     
-    message += f"\n Greeting today date is {str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
+    message = f"\n GooD Morning {name} {str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
 
     self.send_response(200)
     self.send_header('Content-type', 'text/plain')
