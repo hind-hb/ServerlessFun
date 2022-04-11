@@ -1,32 +1,42 @@
 from http.server import BaseHTTPRequestHandler
+from platform import platform
+from unicodedata import name
 from urllib import parse
-import requests
+from datetime import datetime , date 
 
 class handler(BaseHTTPRequestHandler):
 
   def do_GET(self):
-    url_path = self.path
-    url_components = parse.urlsplit(url_path)
-    query_string_list = parse.parse_qsl(url_components.query)
-    dic = dict(query_string_list)
+    s = self.path
+    urlcomponent = parse.urlsplit(s)
+    qslist = parse.parse_qsl(urlcomponent.query)
+    dice = dict(qslist)
+    name = dice.get("name")
 
-
+    if name:
+      message = f"aloha {name}"
+    else:
+      message = "aloha stranger"
     
-    url = 'https://api.zippopotam.us/us/'
-    print(dic)
-    r = requests.get(url + dic['post_code'])
-    
-    data = r.json()
-
-    print(data)
- 
-    message = f"State: {data['places'][0]['state']} City: {data['places'][0]['place name']}"       
-    print(message)
-
+    message += f"\n Greeting today date is {str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
 
     self.send_response(200)
     self.send_header('Content-type', 'text/plain')
     self.end_headers()
+
     self.wfile.write(message.encode())
+
+
+    message1 = '''
+    Welcome to the MY first application of the serverless function .... 
+    will give some updated usefull infromation
+                  ******  crrent Time is  *****   
+    '''
+    self.wfile.write(message1.encode())
+
+    self.wfile.write(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')).encode())
+ 
+
+
 
     return
